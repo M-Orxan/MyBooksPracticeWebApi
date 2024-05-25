@@ -18,7 +18,7 @@ namespace MyBooks.Controllers
             _bookService = bookService;
         }
 
-        [HttpPost]
+        [HttpPost("Add-book")]
 
         public IActionResult AddBook([FromBody] BookVM book)
         {
@@ -30,7 +30,7 @@ namespace MyBooks.Controllers
         [HttpGet("get-all-books")]
         public IActionResult GetAllBooks()
         {
-           List<Book> books= _bookService.GetAllBooks();
+            List<Book> books = _bookService.GetAllBooks();
             return Ok(books);
         }
 
@@ -38,17 +38,26 @@ namespace MyBooks.Controllers
         [HttpGet("get-book-by-id/{id}")]
         public IActionResult GetBookById(int id)
         {
-           Book book= _bookService.GetBookById(id);
+            Book book = _bookService.GetBookById(id);
             return Ok(book);
         }
 
 
 
         [HttpPut("update-book-by id/{id}")]
-        public IActionResult UpdateBook(int id,[FromBody] BookVM newBook)
+        public IActionResult UpdateBookById(int id, [FromBody] BookVM newBook)
         {
-           Book updatedBook= _bookService.UpdateBook(id, newBook);
+            Book updatedBook = _bookService.UpdateBook(id, newBook);
             return Ok(updatedBook);
+        }
+
+
+        [HttpDelete("Delet-book-by id/{id}")]
+
+        public IActionResult DeleteBookById(int id)
+        {
+            _bookService.DeleteBookById(id);
+            return Ok();
         }
     }
 }

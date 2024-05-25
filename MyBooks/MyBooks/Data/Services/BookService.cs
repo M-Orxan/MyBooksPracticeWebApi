@@ -61,10 +61,17 @@ namespace MyBooks.Data.Services
 
             return dbBbook;
 
-
-
-
         }
+
+
+        public void DeleteBookById(int id)
+        {
+          Book book=  _context.Books.FirstOrDefault(x => x.Id == id);
+
+            _context.Remove(book);
+            _context.SaveChanges();
+        }
+
 
 
     }
