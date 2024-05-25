@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MyBooks.Data.Models;
 using MyBooks.Data.Services;
 using MyBooks.Data.ViewModels;
 
@@ -23,6 +24,22 @@ namespace MyBooks.Controllers
         {
             _bookService.AddBook(book);
             return Ok();
+        }
+
+
+        [HttpGet("get-all-books")]
+        public IActionResult GetAllBooks()
+        {
+           List<Book> books= _bookService.GetAllBooks();
+            return Ok(books);
+        }
+
+
+        [HttpGet("get-book-by-id/{id}")]
+        public IActionResult GetBookById(int id)
+        {
+           Book book= _bookService.GetBookById(id);
+            return Ok(book);
         }
     }
 }
