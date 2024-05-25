@@ -1,5 +1,6 @@
 ﻿using MyBooks.Data.Models;
 using MyBooks.Data.ViewModels;
+using System.Threading;
 
 namespace MyBooks.Data.Services
 {
@@ -33,11 +34,38 @@ namespace MyBooks.Data.Services
 
 
 
-        public List<Book> GetAllBooks()=> _context.Books.ToList();
-        
+        public List<Book> GetAllBooks() => _context.Books.ToList();
 
 
-        public Book GetBookById(int id)=> _context.Books.FirstOrDefault(x => x.Id == id);
-        
+
+        public Book GetBookById(int id) => _context.Books.FirstOrDefault(x => x.Id == id);
+
+
+        public Book UpdateBook(int id, BookVM newBook)
+        {
+
+            Book dbBbook = _context.Books.FirstOrDefault(x => x.Id == id);
+            if (dbBbook != null)
+            {
+                dbBbook.Title = newBook.Title;
+                dbBbook.Description = newBook.Description;
+                dbBbook.IsRead = newBook.IsRead;
+                dbBbook.DateRead = newBook.IsRead ? newBook.DateRead.Value : null;
+                dbBbook.Author = newBook.Author;
+                dbBbook.Genre = newBook.Genre;
+                dbBbook.Rate = newBook.IsRead ? newBook.Rate.Value : null;
+                dbBbook.CoverUrl = newBook.CoverUrl;
+
+                _context.SaveChanges();
+            }
+
+            return dbBbook;
+
+
+
+
+        }
+
+
     }
 }
