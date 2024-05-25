@@ -4,10 +4,10 @@ using System.Threading;
 
 namespace MyBooks.Data.Services
 {
-    public class BookService
+    public class BooksService
     {
         private AppDbContext _context;
-        public BookService(AppDbContext context)
+        public BooksService(AppDbContext context)
         {
             _context = context;
         }
