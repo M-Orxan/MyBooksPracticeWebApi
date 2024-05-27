@@ -15,7 +15,7 @@
         public int? Rate { get; set; }
 
         public string Genre { get; set; }
-        public string Author { get; set; }
+       
 
         public string CoverUrl { get; set; }
 

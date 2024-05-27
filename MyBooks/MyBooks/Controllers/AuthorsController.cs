@@ -42,9 +42,9 @@ namespace MyBooks.Controllers
 
         [HttpGet("Get-author-by-id/{id}")]
 
-        public IActionResult GetAllAuthors(int id)
+        public IActionResult GetAuthorById(int id)
         {
-            Author author = _authorsService.GetAuthorById(id);
+            AuthorWithBooksVM author = _authorsService.GetAuthorById(id);
             return Ok(author);
 
         }

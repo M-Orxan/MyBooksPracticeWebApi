@@ -28,7 +28,20 @@ namespace MyBooks.Data.Services
 
 
         public List<Author> GetAllAuthors() => _context.Authors.ToList();
-        public Author GetAuthorById(int id)=> _context.Authors.FirstOrDefault(x => x.Id == id);
+        public AuthorWithBooksVM GetAuthorById(int id)
+        {
+            AuthorWithBooksVM authorWithBooks = _context.Authors.Select(n => new AuthorWithBooksVM
+            {
+                FullName = n.FullName,
+                BookNames = n.Book_Authors.Select(n => n.Book.Title).ToList()
+
+            }).FirstOrDefault();
+
+            return authorWithBooks;
+
+
+
+        }
 
 
 
